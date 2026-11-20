@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark"><meta name="description" content="Четыре раздела персонального Telegram-бота: погода, политика, искусственный интеллект и открытия.">
+<title>Что интересного — выбрать раздел</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#142139;background:#f3f5fa;color-scheme:light;--surface:#fff;--muted:#617088}
+*{box-sizing:border-box}body{margin:0;min-height:100svh;padding:24px 18px max(24px,env(safe-area-inset-bottom));background:inherit}main{max-width:580px;margin:auto}
+header{margin:0 2px 22px}.eyebrow{font-size:14px;color:var(--muted);margin:0 0 8px}h1{font-size:clamp(26px,6.8vw,34px);line-height:1.15;letter-spacing:-.7px;margin:0 0 10px}header p{font-size:16px;line-height:1.5;color:var(--muted);margin:0}
+.sections{display:grid;gap:12px}.section{display:flex;align-items:center;gap:16px;width:100%;min-height:108px;border:0;border-radius:20px;padding:20px;text-align:left;font:inherit;color:#fff;cursor:pointer;box-shadow:0 5px 12px #10244315;touch-action:manipulation}
+.section:focus-visible{outline:3px solid #142139;outline-offset:4px}.section:active{transform:scale(.985)}.section:disabled{cursor:wait;filter:saturate(.65)}
+.weather{background:#1d4ed8}.politics{background:#b45309}.ai{background:#7e22ce}.other{background:#0f766e}
+.icon{flex:0 0 52px;width:52px;height:56px;display:grid;place-items:center;font-size:36px;background:#ffffff17;border-radius:15px}.copy{min-width:0;display:flex;flex-direction:column;gap:6px}.title{font-weight:700;font-size:20px;line-height:1.2}.detail{font-size:14px;line-height:1.4;color:#fff}
+#status{font-size:15px;line-height:1.45;color:var(--muted);min-height:44px;margin:18px 2px 0}.note{font-size:14px;line-height:1.45;color:var(--muted);margin:8px 2px}
+@media(max-width:340px){body{padding:18px 12px}.section{padding:16px;gap:12px}.icon{flex-basis:44px;width:44px;font-size:30px}.title{font-size:18px}}
+@media(prefers-color-scheme:dark){:root{background:#111b2d;color:#f0f5ff;--surface:#1e2c42;--muted:#b6c3d8}.section:focus-visible{outline-color:#fff}}
+</style>
+</head>
+<body><main>
+<header><p class="eyebrow">Что интересного</p><h1>Что посмотрим сегодня?</h1><p>Выберите раздел. Ответ со ссылками придёт в чат с ботом.</p></header>
+<div class="sections" aria-label="Разделы">
+<button class="section weather" data-section="weather"><span class="icon" aria-hidden="true">🌦</span><span class="copy"><span class="title">Погода сегодня</span><span class="detail">Балабаново · прогноз на день</span></span></button>
+<button class="section politics" data-section="politics"><span class="icon" aria-hidden="true">🏛</span><span class="copy"><span class="title">Главные новости политики</span><span class="detail">Россия и международные события</span></span></button>
+<button class="section ai" data-section="ai"><span class="icon" aria-hidden="true">🤖</span><span class="copy"><span class="title">Новости искусственного интеллекта</span><span class="detail">Модели, сервисы и автоматизация</span></span></button>
+<button class="section other" data-section="other"><span class="icon" aria-hidden="true">🌌</span><span class="copy"><span class="title">Интересное</span><span class="detail">Наука, космос и технологии</span></span></button>
+</div>
+<p id="status" role="status" aria-live="polite">Нажмите на нужный раздел.</p>
+<p class="note">Первый запрос нового пользователя потребует разрешения владельца бота.</p>
+</main>
+<script>
+const app=window.Telegram&&window.Telegram.WebApp;
+const buttons=Array.from(document.querySelectorAll('[data-section]'));
+const status=document.getElementById('status');
+if(app){app.ready();app.expand();}
+for(const button of buttons){button.addEventListener('click',()=>{
+ if(!app||app.platform==='unknown'){status.textContent='Откройте меню кнопкой «Выбрать раздел» в Telegram-боте.';return;}
+ buttons.forEach(item=>item.disabled=true);
+ try{app.sendData(JSON.stringify({v:1,section:button.dataset.section}));status.textContent='Запрос отправлен. Вернитесь в чат с ботом.';}
+ catch(error){buttons.forEach(item=>item.disabled=false);status.textContent='Не удалось отправить запрос. Закройте меню и откройте его заново.';}
+});}
+</script>
+</body></html>
