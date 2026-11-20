@@ -9,47 +9,53 @@
 :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#142139;background:#f3f5fa;color-scheme:light;--surface:#fff;--muted:#617088}
 *{box-sizing:border-box}body{margin:0;min-height:100svh;padding:24px 18px max(24px,env(safe-area-inset-bottom));background:inherit}main{max-width:580px;margin:auto}
 header{margin:0 2px 22px}.eyebrow{font-size:14px;color:var(--muted);margin:0 0 8px}h1{font-size:clamp(26px,6.8vw,34px);line-height:1.15;letter-spacing:-.7px;margin:0 0 10px}header p{font-size:16px;line-height:1.5;color:var(--muted);margin:0}
-.sections{display:grid;gap:12px}.section{display:flex;align-items:center;gap:16px;width:100%;min-height:108px;border:0;border-radius:20px;padding:20px;text-align:left;font:inherit;color:#fff;cursor:pointer;box-shadow:0 5px 12px #10244315;touch-action:manipulation}
+.sections{display:grid;gap:12px}.section{display:flex;align-items:center;gap:16px;width:100%;min-height:128px;border:0;border-radius:20px;padding:20px;text-align:left;font:inherit;color:#fff;cursor:pointer;box-shadow:0 5px 12px #10244315;touch-action:manipulation}
 .section:focus-visible{outline:3px solid #142139;outline-offset:4px}.section:active{transform:scale(.985)}.section:disabled{cursor:wait;filter:saturate(.65)}
 .weather{background:#1d4ed8}.politics{background:#b45309}.ai{background:#7e22ce}.other{background:#0f766e}
-.icon{flex:0 0 52px;width:52px;height:56px;display:grid;place-items:center;font-size:36px;background:#ffffff17;border-radius:15px}.copy{min-width:0;display:flex;flex-direction:column;gap:6px}.title{font-weight:700;font-size:20px;line-height:1.2}.detail{font-size:14px;line-height:1.4;color:#fff}
-.icon svg{width:50px;height:50px;overflow:visible;flex:none}.icon{isolation:isolate}
-.sun-rays{transform-box:view-box;transform-origin:23px 22px;animation:icon-turn 16s linear infinite}
-.weather-cloud{animation:cloud-drift 4.5s cubic-bezier(.77,0,.175,1) infinite}
-.rain{animation:rain-fall 2.4s linear infinite}.rain.delay-one{animation-delay:-.8s}.rain.delay-two{animation-delay:-1.6s}
-.world-orbit{transform-box:view-box;transform-origin:44px 19px;animation:icon-turn 9s linear infinite}
-.building-light{animation:icon-shimmer 4.5s cubic-bezier(.77,0,.175,1) infinite}
-.chip-core{transform-box:fill-box;transform-origin:center;animation:chip-breathe 3s cubic-bezier(.77,0,.175,1) infinite}
-.signal{animation:icon-shimmer 3s cubic-bezier(.77,0,.175,1) infinite}.signal.second{animation-delay:-1s}.signal.third{animation-delay:-2s}
-.rocket-body{animation:rocket-hover 4.5s cubic-bezier(.77,0,.175,1) infinite}
-.rocket-flame{transform-box:fill-box;transform-origin:top right;animation:flame-glow 1.5s cubic-bezier(.77,0,.175,1) infinite}
-.sparkle{transform-box:fill-box;transform-origin:center;animation:star-glow 3s cubic-bezier(.77,0,.175,1) infinite}.sparkle.second{animation-delay:-1.5s}
-.section:disabled .icon *{animation-play-state:paused}
-@keyframes icon-turn{to{transform:rotate(360deg)}}
-@keyframes cloud-drift{0%,100%{transform:translateX(-1px)}50%{transform:translateX(1.5px)}}
-@keyframes rain-fall{0%{transform:translate(1px,-2px);opacity:0}25%{opacity:1}80%{opacity:1}100%{transform:translate(-2px,5px);opacity:0}}
-@keyframes icon-shimmer{0%,100%{opacity:.5}50%{opacity:1}}
-@keyframes chip-breathe{0%,100%{transform:scale(.96);opacity:.88}50%{transform:scale(1.03);opacity:1}}
-@keyframes rocket-hover{0%,100%{transform:translate(-.5px,1px)}50%{transform:translate(1.5px,-1.5px)}}
-@keyframes flame-glow{0%,100%{transform:scale(.88);opacity:.75}50%{transform:scale(1.06);opacity:1}}
-@keyframes star-glow{0%,100%{transform:scale(.85);opacity:.55}50%{transform:scale(1);opacity:1}}
-@media(prefers-reduced-motion:reduce){.icon *{animation:none!important}.section:active{transform:none}}
+.icon{position:relative;flex:0 0 84px;width:84px;height:84px;display:block;overflow:hidden;background:#fff;border-radius:19px;box-shadow:0 3px 9px #08162c20;isolation:isolate}.copy{min-width:0;display:flex;flex-direction:column;gap:6px}.title{font-weight:700;font-size:20px;line-height:1.2}.detail{font-size:14px;line-height:1.4;color:#fff}
+.icon img,.icon video{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}.icon video{position:absolute;inset:0;opacity:0}.icon video.is-playing{opacity:1}
+@media(prefers-reduced-motion:reduce){.icon video{display:none}.section:active{transform:none}}
 #status{font-size:15px;line-height:1.45;color:var(--muted);min-height:44px;margin:18px 2px 0}.note{font-size:14px;line-height:1.45;color:var(--muted);margin:8px 2px}
-@media(max-width:340px){body{padding:18px 12px}.section{padding:16px;gap:12px}.icon{flex-basis:44px;width:44px;font-size:30px}.title{font-size:18px}}
+@media(max-width:340px){body{padding:18px 12px}.section{padding:16px;gap:12px}.icon{flex-basis:68px;width:68px;height:68px;border-radius:15px}.title{font-size:18px}}
 @media(prefers-color-scheme:dark){:root{background:#111b2d;color:#f0f5ff;--surface:#1e2c42;--muted:#b6c3d8}.section:focus-visible{outline-color:#fff}}
 </style>
 </head>
 <body><main>
 <header><p class="eyebrow">Что интересного</p><h1>Что посмотрим сегодня?</h1><p>Выберите раздел. Ответ со ссылками придёт в чат с ботом.</p></header>
 <div class="sections" aria-label="Разделы">
-<button class="section weather" data-section="weather"><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" focusable="false"><defs><linearGradient id="sun-color" x2="0" y2="1"><stop stop-color="#fff6a5"/><stop offset="1" stop-color="#ffb02e"/></linearGradient><linearGradient id="cloud-color" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#b9e9ff"/></linearGradient></defs><g class="sun-rays" stroke="#ffe79a" stroke-width="2.6" stroke-linecap="round"><path d="M23 3v4m0 30v4M4 22h4m30 0h4M9.5 8.5l3 3m21 21 3 3m0-27-3 3m-21 21-3 3"/></g><circle cx="23" cy="22" r="11" fill="url(#sun-color)"/><g class="weather-cloud"><path d="M19 46a9 9 0 0 1-1-18 12 12 0 0 1 23-3 10.5 10.5 0 1 1 5 21Z" fill="url(#cloud-color)"/><path d="M20 31a9 9 0 0 1 14-3" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></g><g stroke="#75e6ff" stroke-width="3.2" stroke-linecap="round"><path class="rain" d="m23 51-2 4"/><path class="rain delay-one" d="m35 51-2 4"/><path class="rain delay-two" d="m47 51-2 4"/></g></svg></span><span class="copy"><span class="title">Погода сегодня</span><span class="detail">Балабаново · прогноз на день</span></span></button>
-<button class="section politics" data-section="politics"><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" focusable="false"><defs><linearGradient id="building-color" x2="0" y2="1"><stop stop-color="#fff6dc"/><stop offset="1" stop-color="#ffd082"/></linearGradient></defs><circle cx="44" cy="19" r="12" fill="#94e7ff"/><g stroke="#2666c0" stroke-width="1.3" fill="none"><ellipse cx="44" cy="19" rx="5" ry="12"/><path d="M33 16h22M33 22h22"/></g><g class="world-orbit"><circle cx="44" cy="4" r="2.5" fill="#fff5ba"/></g><path d="m7 33 20-13 20 13Z" fill="url(#building-color)"/><path d="M8 36h38M5 57h44" stroke="#fff1d3" stroke-width="4" stroke-linecap="round"/><g fill="url(#building-color)"><rect x="11" y="39" width="6" height="14" rx="1.5"/><rect x="24" y="39" width="6" height="14" rx="1.5"/><rect x="37" y="39" width="6" height="14" rx="1.5"/></g><path class="building-light" d="m27 25 3 5h-6Z" fill="#fff"/></svg></span><span class="copy"><span class="title">Главные новости политики</span><span class="detail">Россия и международные события</span></span></button>
-<button class="section ai" data-section="ai"><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" focusable="false"><defs><linearGradient id="chip-color" x2="1" y2="1"><stop stop-color="#c5fcff"/><stop offset=".55" stop-color="#94c8ff"/><stop offset="1" stop-color="#e3b4ff"/></linearGradient></defs><g stroke="#d6b6ff" stroke-width="3" stroke-linecap="round"><path d="M23 7v7m9-7v7m9-7v7M23 50v7m9-7v7m9-7v7M7 23h7m-7 9h7m-7 9h7m36-18h7m-7 9h7m-7 9h7"/></g><rect x="14" y="14" width="36" height="36" rx="11" fill="url(#chip-color)"/><rect x="19" y="19" width="26" height="26" rx="8" fill="#3d247c"/><g class="chip-core"><path d="m32 23 3.5 5.5L41 32l-5.5 3.5L32 41l-3.5-5.5L23 32l5.5-3.5Z" fill="#8df9f4"/><circle cx="32" cy="32" r="3.2" fill="#fff"/></g><circle class="signal" cx="9" cy="15" r="2" fill="#80ffdd"/><circle class="signal second" cx="55" cy="48" r="2.2" fill="#ffe29a"/><circle class="signal third" cx="52" cy="9" r="2" fill="#e8c8ff"/></svg></span><span class="copy"><span class="title">Новости искусственного интеллекта</span><span class="detail">Модели, сервисы и автоматизация</span></span></button>
-<button class="section other" data-section="other"><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" focusable="false"><defs><linearGradient id="rocket-color" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#b7e1ff"/></linearGradient><linearGradient id="flame-color" x2="1" y2="0"><stop stop-color="#ff946c"/><stop offset="1" stop-color="#fff8a6"/></linearGradient></defs><path d="M9 43a23 23 0 0 1 36-28" stroke="#77e7d3" stroke-width="1.5" fill="none" stroke-dasharray="2 4"/><g class="rocket-body"><path class="rocket-flame" d="M24 39C14 38 9 46 10 54c9 0 17-5 16-13Z" fill="url(#flame-color)"/><path d="m26 39-10-3 2-9 14-3m-4 12 1 13 9-2 3-12" fill="#9da5ff"/><path d="M22 34C27 20 39 11 54 10c-1 15-10 27-24 32Z" fill="url(#rocket-color)"/><path d="M44 11c1 5 4 8 9 9l1-10Z" fill="#ffb4b0"/><circle cx="40" cy="24" r="6" fill="#3478d1" stroke="#fff" stroke-width="2.4"/><path d="m24 37 3 3" stroke="#7c6abf" stroke-width="3" stroke-linecap="round"/></g><path class="sparkle" d="m13 7 1.6 4.4L19 13l-4.4 1.6L13 19l-1.6-4.4L7 13l4.4-1.6Z" fill="#fff4b6"/><path class="sparkle second" d="m51 43 1.4 4.6L57 49l-4.6 1.4L51 55l-1.4-4.6L45 49l4.6-1.4Z" fill="#b2fff0"/></svg></span><span class="copy"><span class="title">Интересное</span><span class="detail">Наука, космос и технологии</span></span></button>
+<button class="section weather" data-section="weather"><span class="icon" aria-hidden="true"><img src="assets/weather.webp" width="256" height="256" alt=""><video muted loop playsinline preload="none" data-src="assets/weather.mp4" poster="assets/weather.webp" tabindex="-1"></video></span><span class="copy"><span class="title">Погода сегодня</span><span class="detail">Балабаново · прогноз на день</span></span></button>
+<button class="section politics" data-section="politics"><span class="icon" aria-hidden="true"><img src="assets/politics.webp" width="256" height="256" alt=""><video muted loop playsinline preload="none" data-src="assets/politics.mp4" poster="assets/politics.webp" tabindex="-1"></video></span><span class="copy"><span class="title">Главные новости политики</span><span class="detail">Россия и международные события</span></span></button>
+<button class="section ai" data-section="ai"><span class="icon" aria-hidden="true"><img src="assets/ai.webp" width="256" height="256" alt=""><video muted loop playsinline preload="none" data-src="assets/ai.mp4" poster="assets/ai.webp" tabindex="-1"></video></span><span class="copy"><span class="title">Новости искусственного интеллекта</span><span class="detail">Модели, сервисы и автоматизация</span></span></button>
+<button class="section other" data-section="other"><span class="icon" aria-hidden="true"><img src="assets/other.webp" width="256" height="256" alt=""><video muted loop playsinline preload="none" data-src="assets/other.mp4" poster="assets/other.webp" tabindex="-1"></video></span><span class="copy"><span class="title">Интересное</span><span class="detail">Наука, космос и технологии</span></span></button>
 </div>
 <p id="status" role="status" aria-live="polite">Нажмите на нужный раздел.</p>
 <p class="note">Первый запрос нового пользователя потребует разрешения владельца бота.</p>
 </main>
+<script>
+// Posters remain visible if autoplay is blocked or reduced motion is enabled.
+(()=>{
+ const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+ const videos=Array.from(document.querySelectorAll('.icon video'));
+ function update(){
+  for(const video of videos){
+   const active=!motion.matches&&!document.hidden&&!video.closest('button').disabled;
+   video.muted=true;
+   if(!active){video.pause();video.classList.remove('is-playing');continue;}
+   if(!video.hasAttribute('src')) video.src=video.dataset.src;
+   const playback=video.play();
+   if(playback) playback.catch(()=>video.classList.remove('is-playing'));
+  }
+ }
+ for(const video of videos){
+  video.addEventListener('playing',()=>{if(!motion.matches&&!document.hidden&&!video.closest('button').disabled)video.classList.add('is-playing');});
+  video.addEventListener('error',()=>video.classList.remove('is-playing'));
+ }
+ motion.addEventListener('change',update);
+ document.addEventListener('visibilitychange',update);
+ new MutationObserver(update).observe(document.querySelector('.sections'),{subtree:true,attributes:true,attributeFilter:['disabled']});
+ update();
+})();
+</script>
 <script>
 const app=window.Telegram&&window.Telegram.WebApp;
 const buttons=Array.from(document.querySelectorAll('[data-section]'));
